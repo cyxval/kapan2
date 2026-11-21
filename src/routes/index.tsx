@@ -1,8 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { StructuredData } from "@/components/StructuredData";
-import { ScrollScrub } from "@/components/scroll-scrub/scroll-scrub";
-import { scrollScrubScenes, scrollScrubTheme } from "@/scroll-scrub-scenes";
 
 const businessJson = JSON.stringify({
   "@context": "https://schema.org",
@@ -19,107 +17,118 @@ const businessJson = JSON.stringify({
   sameAs: ["https://www.instagram.com/food_court__kapan"],
 });
 
-const photos = [
-  { src: "/assets/world/photo-2.jpg", alt: "Food Court Kapan-ի պատրաստի ուտեստների ընտրանի" },
-  { src: "/assets/world/photo-3.jpg", alt: "Food Court Kapan-ի հարմարավետ սրահը" },
-  { src: "/assets/world/photo-4.jpg", alt: "Բրնձով ուտեստ Food Court Kapan-ում" },
-  { src: "/assets/world/photo-5.jpg", alt: "Թարմ պատրաստված թխվածք" },
-  { src: "/assets/world/photo-8.jpg", alt: "Տաք ուտեստների ընտրանի" },
-  { src: "/assets/world/photo-9.jpg", alt: "Սեղաններ և քարե պատով ինտերիեր" },
+const gallery = [
+  { src: "/assets/world/photo-2.jpg", alt: "Պատրաստի տաք ուտեստների ընտրանի", label: "Ամենօրյա ընտրանի", shape: "tall" },
+  { src: "/assets/world/photo-4.jpg", alt: "Բրնձով և բանջարեղենով ուտեստ", label: "Թարմ պատրաստված", shape: "wide" },
+  { src: "/assets/world/photo-5.jpg", alt: "Թարմ թխվածք", label: "Քաղցր ընդմիջում", shape: "small" },
+  { src: "/assets/world/photo-8.jpg", alt: "Տաք ուտեստների տեսականի", label: "Համեղ տարբերակներ", shape: "small" },
+  { src: "/assets/world/photo-9.jpg", alt: "Food Court Kapan-ի սրահը", label: "Հարմարավետ սրահ", shape: "wide" },
 ];
 
-export const Route = createFileRoute("/")({
-  component: Index,
-});
+export const Route = createFileRoute("/")({ component: Index });
 
 function Index() {
   return (
-    <main className="fc-site">
+    <main className="fcp-site">
       <StructuredData json={businessJson} />
-      <header className="fc-header">
-        <a className="fc-brand" href="#top" aria-label="Food Court Kapan — գլխավոր էջ">
-          <span className="fc-brand-mark">FC</span>
-          <span className="fc-brand-copy"><strong>FOOD COURT</strong><small>KAPAN · ARMENIA</small></span>
+      <header className="fcp-header">
+        <a className="fcp-logo" href="#home" aria-label="Food Court Kapan">
+          <span className="fcp-logo-mark">FC<span>.</span></span>
+          <span className="fcp-logo-type"><b>FOOD COURT</b><small>KAPAN · ARMENIA</small></span>
         </a>
-        <nav className="fc-nav" aria-label="Գլխավոր նավիգացիա">
-          <a href="#about">Մեր մասին</a>
-          <a href="#gallery">Լուսանկարներ</a>
-          <a href="#contact">Կապ</a>
+        <nav className="fcp-nav" aria-label="Գլխավոր նավիգացիա">
+          <a href="#story">Մեր մասին</a>
+          <a href="#menu">Մենյու</a>
+          <a href="#gallery">Մթնոլորտ</a>
+          <a href="#visit">Գտնել մեզ</a>
         </nav>
-        <a className="fc-header-call" href="tel:+37494777300">094 777300 <span>↗</span></a>
+        <a className="fcp-header-cta" href="tel:+37494777300">Զանգահարել <span>↗</span></a>
       </header>
 
-      <div id="top" className="fc-journey-wrap">
-        <ScrollScrub scenes={scrollScrubScenes} theme={scrollScrubTheme} className="fc-journey" />
-        <div className="fc-scroll-note" aria-hidden="true"><span /> SCROLL TO EXPLORE</div>
-      </div>
-
-      <section className="fc-intro" id="about">
-        <div className="fc-section-kicker">ՄԵՐ ՄԱՍԻՆ <i /></div>
-        <div className="fc-intro-grid">
-          <h2>Համեղ ընդմիջում՝<br /><em>քո քաղաքի սրտում։</em></h2>
-          <div className="fc-intro-copy">
-            <p>Food Court Kapan-ը հարմար վայր է համեղ ուտեստներ վայելելու և հաճելի ժամանակ անցկացնելու համար։ Մեզ մոտ կարող ես կանգ առնել արագ ճաշի կամ ընկերների հետ հանգիստ հանդիպման համար։</p>
-            <a className="fc-text-link" href="https://www.instagram.com/food_court__kapan" target="_blank" rel="noreferrer">Հետևել Instagram-ում <span>↗</span></a>
+      <section className="fcp-hero" id="home">
+        <img className="fcp-hero-image" src="/assets/world/photo-2.jpg" alt="Food Court Kapan-ի պատրաստի ուտեստները" fetchPriority="high" />
+        <div className="fcp-hero-shade" />
+        <div className="fcp-hero-content">
+          <div className="fcp-eyebrow"><span /> ՀԱՄԵՂ ԿԱՆԳԱՌ ԿԱՊԱՆՈՒՄ</div>
+          <h1>Լավ համը<br /><em>միավորում է։</em></h1>
+          <p>Սիրված ուտեստներ, ջերմ մթնոլորտ և հաճելի դադար քաղաքի սրտում։</p>
+          <div className="fcp-hero-actions">
+            <a className="fcp-btn fcp-btn-light" href="#menu">Բացահայտել ավելին <span>↓</span></a>
+            <a className="fcp-btn fcp-btn-ghost" href="tel:+37494777300">094 777300 <span>↗</span></a>
           </div>
         </div>
-        <div className="fc-feature-row">
-          <div><span>01</span><strong>Համեղ ընտրանի</strong><small>Տարբեր ուտեստներ՝ մեկ վայրում</small></div>
-          <div><span>02</span><strong>Հարմարավետ սրահ</strong><small>Հանգիստ մթնոլորտ ամեն օրվա համար</small></div>
-          <div><span>03</span><strong>Կապանի կենտրոնում</strong><small>Հեշտ է գտնել և այցելել</small></div>
+        <div className="fcp-hero-bottom"><span>FOOD COURT KAPAN</span><span>37/6 SHAHUMYAN ST · KAPAN</span><span>01 — 04</span></div>
+        <a className="fcp-scroll" href="#story" aria-label="Ոլորել ներքև"><span /> SCROLL TO DISCOVER</a>
+      </section>
+
+      <section className="fcp-story" id="story">
+        <div className="fcp-story-image-wrap">
+          <img src="/assets/world/photo-1.jpg" alt="Food Court Kapan-ի մուտքը Շահումյան փողոցում" loading="lazy" />
+          <span className="fcp-image-stamp">KAPAN<br />ARMENIA</span>
+        </div>
+        <div className="fcp-story-copy">
+          <div className="fcp-eyebrow fcp-eyebrow-dark">ՄԵՐ ՄԱՍԻՆ <span /></div>
+          <p className="fcp-overline">ՀԱՄԵՂ ՊԱՀԵՐԸ ՍԿՍՎՈՒՄ ԵՆ ԱՅՍՏԵՂ</p>
+          <h2>Քո քաղաքի<br /><em>համեղ անկյունը։</em></h2>
+          <p className="fcp-body">Food Court Kapan-ը վայր է, որտեղ կարող ես վայելել համեղ ուտեստներ, մի փոքր դադար վերցնել առօրյայից և հաճելի ժամանակ անցկացնել։ Մտիր արագ ճաշի կամ ընկերների հետ հանդիպման համար։</p>
+          <a className="fcp-underlink" href="https://www.instagram.com/food_court__kapan" target="_blank" rel="noreferrer">Ծանոթանալ մեզ հետ Instagram-ում <span>↗</span></a>
+          <div className="fcp-stat-row"><div><b>01</b><span>Ջերմ մթնոլորտ</span></div><div><b>02</b><span>Ուտեստների ընտրանի</span></div><div><b>03</b><span>Կապանի սրտում</span></div></div>
         </div>
       </section>
 
-      <section className="fc-gallery" id="gallery">
-        <div className="fc-gallery-heading">
-          <div><div className="fc-section-kicker">ՄԵՐ ՏԵՍԱԿԱՆ ԱՇԽԱՐՀԸ <i /></div><h2>Տես, ընտրիր,<br /><em>արի համտեսելու։</em></h2></div>
-          <p>Մեր իրական լուսանկարները՝ ուտեստներից մինչև սրահի ջերմ միջավայրը։</p>
+      <section className="fcp-menu" id="menu">
+        <div className="fcp-menu-top">
+          <div><div className="fcp-eyebrow"><span /> ԱՅՍՕՐՎԱ ԸՆՏՐՈՒԹՅՈՒՆԸ</div><h2>Ի՞նչ ես<br /><em>նախընտրում։</em></h2></div>
+          <div className="fcp-menu-note"><span className="fcp-note-line" /><p>Մեր տեսականին փոխվում է։ Զանգիր՝ տեղեկանալու այսօրվա հասանելի ուտեստների և մենյուի մասին։</p><a className="fcp-btn fcp-btn-light" href="tel:+37494777300">Հարցնել մենյուի մասին <span>↗</span></a></div>
         </div>
-        <div className="fc-photo-grid">
-          {photos.map((photo, index) => (
-            <figure className={`fc-photo fc-photo-${index + 1}`} key={photo.src}>
+        <div className="fcp-menu-image">
+          <img src="/assets/world/photo-8.jpg" alt="Food Court Kapan-ում մատուցվող տաք ուտեստներ" loading="lazy" />
+          <div><span>ՊԱՏՐԱՍՏՎԱԾ ՍԻՐՈՎ</span><b>Համը՝ ամեն մանրուքում։</b></div>
+        </div>
+      </section>
+
+      <section className="fcp-gallery" id="gallery">
+        <div className="fcp-gallery-head">
+          <div><div className="fcp-eyebrow fcp-eyebrow-dark">ՄԵՐ ՄԹՆՈԼՈՐՏԸ <span /></div><h2>Մի փոքր<br /><em>Food Court-ից։</em></h2></div>
+          <p>Իրական լուսանկարներ մեր ուտեստներից և սրահից։ Ընտրիր քո սիրելի անկյունը և արի հյուր։</p>
+        </div>
+        <div className="fcp-gallery-grid">
+          {gallery.map((photo, index) => (
+            <figure className={`fcp-gallery-item fcp-gallery-${photo.shape}`} key={photo.src}>
               <img src={photo.src} alt={photo.alt} loading="lazy" />
-              <figcaption>FOOD COURT KAPAN <span>0{index + 1}</span></figcaption>
+              <figcaption><span>0{index + 1}</span>{photo.label}<b>↗</b></figcaption>
             </figure>
           ))}
         </div>
       </section>
 
-      <section className="fc-menu-cta">
-        <div className="fc-menu-orbit" aria-hidden="true">FC</div>
-        <div className="fc-section-kicker">ԱՅՍՕՐՎԱ ԸՆՏՐՈՒԹՅՈՒՆԸ <i /></div>
-        <h2>Ի՞նչ համեղ բան<br /><em>կընտրես այսօր։</em></h2>
-        <p>Այսօրվա ուտեստների և առկայության մասին տեղեկանալու համար կապ հաստատիր մեզ հետ։</p>
-        <a className="fc-button fc-button--gold" href="tel:+37494777300">Հարցնել այսօրվա մենյուն <span>↗</span></a>
-      </section>
-
-      <section className="fc-contact" id="contact">
-        <div className="fc-contact-main">
-          <div className="fc-section-kicker">ԳՏՆԻՐ ՄԵԶ <i /></div>
-          <h2>Հանդիպենք<br /><em>Food Court-ում։</em></h2>
-          <p>Մենք սպասում ենք քեզ Կապանում։ Զանգիր կամ բացիր հասցեն քարտեզում՝ այցելությունդ պլանավորելու համար։</p>
-          <div className="fc-contact-actions">
-            <a className="fc-button fc-button--gold" href="tel:+37494777300">094 777300 <span>↗</span></a>
-            <a className="fc-button fc-button--outline" href="https://www.google.com/maps/search/?api=1&query=Food+Court+Kapan+37%2F6+Shahumyan+St+Kapan+3301+Armenia" target="_blank" rel="noreferrer">Բացել քարտեզը ↗</a>
+      <section className="fcp-visit" id="visit">
+        <div className="fcp-visit-copy">
+          <div className="fcp-eyebrow"><span /> ԱՅՍՏԵՂԻՑ ՍԿՍՎՈՒՄ Է ՔՈ ՃԱՆԱՊԱՐՀԸ</div>
+          <h2>Հանդիպենք<br /><em>մեր սեղանի շուրջ։</em></h2>
+          <p>Գտիր մեզ Կապանում՝ Շահումյան փողոց 37/6 հասցեում։ Սիրով կսպասենք քեզ։</p>
+          <div className="fcp-visit-actions">
+            <a className="fcp-btn fcp-btn-light" href="https://www.google.com/maps/search/?api=1&query=Food+Court+Kapan+37%2F6+Shahumyan+St+Kapan+3301+Armenia" target="_blank" rel="noreferrer">Ինչպես հասնել <span>↗</span></a>
+            <a className="fcp-btn fcp-btn-ghost" href="tel:+37494777300">094 777300 <span>↗</span></a>
           </div>
         </div>
-        <div className="fc-contact-card">
-          <span className="fc-card-label">ՄԵՐ ՀԱՍՑԵՆ</span>
-          <strong>37/6 Շահումյան փողոց</strong>
-          <span>Կապան 3301, Հայաստան</span>
-          <div className="fc-card-divider" />
-          <span className="fc-card-label">ՀԵՌԱԽՈՍ</span>
-          <a href="tel:+37494777300">094 777300</a>
-          <div className="fc-card-divider" />
-          <span className="fc-card-label">INSTAGRAM</span>
-          <a href="https://www.instagram.com/food_court__kapan" target="_blank" rel="noreferrer">@food_court__kapan ↗</a>
+        <div className="fcp-visit-card">
+          <img src="/assets/world/photo-3.jpg" alt="Food Court Kapan-ի հարմարավետ սրահը" loading="lazy" />
+          <div className="fcp-visit-details">
+            <span>ՄԵՐ ՀԱՍՑԵՆ</span><b>37/6 Շահումյան փողոց</b><small>Կապան 3301, Հայաստան</small>
+            <i />
+            <span>ՀԵՌԱԽՈՍ</span><a href="tel:+37494777300">094 777300</a>
+            <i />
+            <span>INSTAGRAM</span><a href="https://www.instagram.com/food_court__kapan" target="_blank" rel="noreferrer">@food_court__kapan ↗</a>
+          </div>
         </div>
       </section>
 
-      <footer className="fc-footer">
-        <a className="fc-brand" href="#top"><span className="fc-brand-mark">FC</span><span className="fc-brand-copy"><strong>FOOD COURT</strong><small>KAPAN · ARMENIA</small></span></a>
+      <footer className="fcp-footer">
+        <a className="fcp-logo" href="#home"><span className="fcp-logo-mark">FC<span>.</span></span><span className="fcp-logo-type"><b>FOOD COURT</b><small>KAPAN · ARMENIA</small></span></a>
         <span>Համեղ պահերը սկսվում են այստեղ։</span>
-        <a href="#top">Վերադառնալ վերև ↑</a>
+        <a href="#home">Վերադառնալ վերև ↑</a>
+        <small>© {new Date().getFullYear()} FOOD COURT KAPAN</small>
       </footer>
     </main>
   );
